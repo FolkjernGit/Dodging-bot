@@ -1,10 +1,25 @@
 import pygame
 
 def check_collision(player, projectile):
-    player_center = player.position + pygame.Vector2(player.radius // 2, player.radius // 2)
-    distance = player_center.distance_to(projectile.position)
 
-    if distance < player.radius // 2 + projectile.radius:
+    distance = player.position.distance_to(
+        projectile.position
+    )
+
+    hit_distance = (
+        player.radius // 2 +
+        projectile.radius // 2
+    )
+
+    if distance < hit_distance:
+
+        if player.shielded:
+            player.shielded = False
+            player.shield_duration = 0
+            player.shield_cooldown = 300
+            player.blocked_projectiles += 1
+            return False
+
         return True
 
     return False

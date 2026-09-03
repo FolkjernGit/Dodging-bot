@@ -17,9 +17,8 @@ class Projectile:
         
 
 
-def random_projectile(target, screen_size):
+def random_projectile(target, screen_size, speed):
     width, height = screen_size
-    speed = 3
 
     if random.choice((True, False)):
         position = pygame.Vector2(random.randrange(width), random.choice((0, height)))
